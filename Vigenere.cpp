@@ -1,12 +1,19 @@
 #include "Vigenere.h"
 #include <cctype>
 
+// Alphabet used in basic mode
 const std::string ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+// ASCII range for advanced mode
 const int ASCII_START = 32;
 const int ASCII_END = 126;
 
-/* ================= BASIC MODE ================= */
+/* =====================================================
+   BASIC MODE FUNCTIONS (Alphabet Only)
+   ===================================================== */
 
+// Generates a repeated key that matches the plaintext length
+// Non-alphabetic characters are preserved
 std::string generateKey(const std::string& text, const std::string& key) {
     std::string fullKey;
     int keyIndex = 0;
@@ -22,6 +29,7 @@ std::string generateKey(const std::string& text, const std::string& key) {
     return fullKey;
 }
 
+// Encrypts plaintext using the Vigenere cipher (A–Z)
 std::string encryptBasic(const std::string& plaintext, const std::string& key) {
     std::string ciphertext;
     std::string fullKey = generateKey(plaintext, key);
@@ -32,12 +40,13 @@ std::string encryptBasic(const std::string& plaintext, const std::string& key) {
             int k = fullKey[i] - 'A';
             ciphertext += ALPHABET[(p + k) % 26];
         } else {
-            ciphertext += plaintext[i];
+            ciphertext += plaintext[i]; // Keep symbols unchanged
         }
     }
     return ciphertext;
 }
 
+// Decrypts ciphertext back to original plaintext
 std::string decryptBasic(const std::string& ciphertext, const std::string& key) {
     std::string plaintext;
     std::string fullKey = generateKey(ciphertext, key);
@@ -54,8 +63,11 @@ std::string decryptBasic(const std::string& ciphertext, const std::string& key) 
     return plaintext;
 }
 
-/* ================= ASCII MODE ================= */
+/* =====================================================
+   ADVANCED MODE FUNCTIONS (ASCII 32–126)
+   ===================================================== */
 
+// Encrypts all printable ASCII characters
 std::string encryptASCII(const std::string& plaintext, const std::string& key) {
     std::string ciphertext;
     int keyIndex = 0;
@@ -75,6 +87,7 @@ std::string encryptASCII(const std::string& plaintext, const std::string& key) {
     return ciphertext;
 }
 
+// Decrypts ASCII ciphertext back to original text
 std::string decryptASCII(const std::string& ciphertext, const std::string& key) {
     std::string plaintext;
     int keyIndex = 0;
