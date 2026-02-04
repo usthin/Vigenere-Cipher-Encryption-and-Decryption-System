@@ -8,9 +8,7 @@ const std::string ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const int ASCII_START = 32;
 const int ASCII_END = 126;
 
-/* =====================================================
-   BASIC MODE FUNCTIONS (Alphabet Only)
-   ===================================================== */
+/* BASIC MODE FUNCTIONS (Alphabet Only) */
 
 // Generates a repeated key that matches the plaintext length
 // Non-alphabetic characters are preserved
@@ -63,9 +61,7 @@ std::string decryptBasic(const std::string& ciphertext, const std::string& key) 
     return plaintext;
 }
 
-/* =====================================================
-   ADVANCED MODE FUNCTIONS (ASCII 32–126)
-   ===================================================== */
+/* ADVANCED MODE FUNCTIONS (ASCII 32–126) */
 
 // Encrypts all printable ASCII characters
 std::string encryptASCII(const std::string& plaintext, const std::string& key) {
